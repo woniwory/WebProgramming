@@ -1,0 +1,7 @@
+body { background-color : aliceblue; font-size : 1em; font-family : Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; }
+h3 { color : black; text-align: center;}
+header { background-color: yellow;}
+section { background : pink; position : relative; top : 10px}
+
+span { color : blue; font-family :'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif}       
+footer { background : orange; position : relative; top : 30px}
