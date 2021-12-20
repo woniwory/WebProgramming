@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>겜블링 게임</title>
+    <style>
+        span{
+            font-size: 5em;
+            color: blue;
+            background-color: burlywood;
+            border: solid orange;
+            margin: 0%;
+        }
+        div{
+            color: orchid;
+        }
+    </style>
+</head>
+<body>
+    <h3>겜블링 게임</h3>
+    <hr>
+    <span onclick="num1(this)">0</span>
+    <span onclick="num2(this)">0</span>
+    <span onclick="num3(this)">0</span>
+    <div id="result" onclick="restart()"></div>
+
+    <script>
+        var n1, n2, n3;
+
+        function result(){
+            var res = document.getElementById("result");
+           if(n1==n2 && n2==n3){
+                res.innerHTML="Success(click here to do again)";
+           }
+           else{
+                res.innerHTML="fail(click here to do again)";
+           }
+        }
+       
+        function num1(obj){
+            var num=Math.floor(Math.random()*3);
+            n1=num;
+            obj.innerHTML = num;
+        }
+
+        function num2(obj){
+            var num=Math.floor(Math.random()*3);
+            n2=num;
+            obj.innerHTML = num;
+        }
+
+        function num3(obj){
+            var num=Math.floor(Math.random()*3);
+            n3=num;
+            obj.innerHTML = num;
+            result();
+        }
+
+        function restart(){
+            var span=document.getElementsByTagName("span");
+            for(var i=0;i<span.length;i++){
+                span[i].innerHTML="0";
+            }
+            var res = document.getElementById("result");
+            res.innerHTML="";
+        }
+    </script>
+</body>
+</html>
