@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>마우스 클릭 연습</title>
+  <h3> 마우스 클릭 연습</h3>
+  <hr>
+  <style>
+    table {
+        border : 1px solid blue;
+        border-collapse : collapse;
+    }
+    td {
+        border : 1px solid blue;
+        width : 50px;
+        height : 50px;
+        padding : 0px;
+    }
+
+    img{
+        width : 30px;
+        height : 30px;
+    }
+    </style>
+    <script>
+    var select=0; 
+    var img = new Image();
+    img.src="shrek.png"; 
+    function set() {
+    var table = document.getElementById("demo");
+ 
+    
+    for( var i = 0; i < 10; i++ ){
+        var row = document.createElement("tr");
+        for( var j = 0; j < 10; j++ ){
+            var col = document.createElement("td");
+            col.innerHTML = "<img src=''>"
+            row.appendChild(col);
+        }
+        table.appendChild(row);
+    }
+    
+        for(var i=0;i<100;i++) { 
+            document.images[i].onclick=moveImage;
+            document.images[i].style.visibility = "hidden"; 
+        }
+        moveImage(); 
+    }
+    
+    function moveImage() { 
+        document.images[select].src=""; 
+        document.images[select].style.visibility = "hidden"; 
+        select = Math.floor(Math.random()*100); 
+        document.images[select].src=img.src; 
+        document.images[select].style.visibility = "visible"; 
+    }
+    </script>
+</head>
+<body onload="set()">
+  <table id="demo"></table>
+</body>
+</html>
+
