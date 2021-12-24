@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2021-2-WebProg-C1-HW13-정성원-32204077</title>
+</head>
+<body>
+  <h3>나의 단어장 만들기</h3>
+  <hr>
+  영어 <input id="eng" type="text" size="30"><br>
+  한글 <input id="kor" type="text" size="30"><br><br>
+  <button id="save" onclick="store()">단어 저장</button>
+  <button id="search" onclick="search()">영단어 검색</button>
+  <button id="delete" onclick="remove()">단어 삭제</button>
+  <button id="all" onclick="view()">전체 보기</button>
+
+  <script>
+    var eng= document.getElementById("eng");
+    var kor= document.getElementById("kor");
+    function store(){
+      if (!window.localStorage){
+        alert("로컬스토리지를 지원하지 않습니다.");
+        return ;
+      }
+
+      var val= localStorage.getItem(eng.value);
+      if (val==null){
+        localStorage.setItem(eng.value, kor.value);
+      }
+      else{
+        var ret = confirm(eng.value+"가 이미 있습니다. 수정하시겠습니까?");
+        if (ret==true){
+            localStorage.setItem(eng.value, kor.value);
+        }
+        else{
+          return ;
+        }
+      }
+    }
+    function search(){
+      if (!window.localStorage){
+        alert("로컬스토리지를 지원하지 않습니다.");
+        return ;
+      }
+      var val= localStorage.getItem(eng.value);
+      if (val==null){
+        alert(eng.value+"은 없는 단어입니다.");
+      }
+      else{
+        kor.value=val;
+      }
+    }
+    function remove(){
+      if (!window.localStorage){
+        alert("로컬스토리지를 지원하지 않습니다.");
+        return ;
+      }
+      var val= localStorage.getItem(eng.value);
+      if (val==null){
+        alert(eng.value+"은 없는 단어입니다.");
+      }
+      else{
+        localStorage.removeItem(eng.value);
+      }
+    }
+    function view(){
+      if (!window.localStorage){
+        alert("로컬스토리지를 지원하지 않습니다.");
+        return ;
+      }
+      var newWindow=window.open('vocabularyNote.html');
+      newWindow.document.write("<h3>나의 단어장 모두 출력</h3>");
+      newWindow.document.write("<hr>");
+      newWindow.document.write("<table border='0'style='background-color:lightblue'>");
+      newWindow.document.write("<tbody>");
+      for (var i=0; i<localStorage.length; i++){
+        var key= localStorage.key(i);
+        var val= localStorage.getItem(key);
+        newWindow.document.write("<tr>");
+        newWindow.document.write("<td style='border-color:green; border-style:solid; border-width:2px'>");
+        newWindow.document.write(i+1);
+        newWindow.document.write("</td>");
+        newWindow.document.write("<td>");
+        newWindow.document.write(key.bold());
+        newWindow.document.write("</td>");
+        newWindow.document.write("<td>");
+        newWindow.document.write(val);
+        newWindow.document.write("</td>");
+        newWindow.document.write("</tr>");
+      }
+      newWindow.document.write("</tbody>");
+      newWindow.document.write("</table>");
+    }
+
+  </script>
+</body>
+</html>
